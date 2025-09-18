@@ -120,6 +120,10 @@ export default function TrendAnalysis({ user }: TrendAnalysisProps) {
         recommendation: '男性尿酸正常值相对较高，但仍需注意控制'
       };
     }
+    return {
+      normalRange: '210-420 μmol/L',
+      recommendation: '请设置性别信息以获取更准确的建议'
+    };
   };
 
   const stats = getStatistics();

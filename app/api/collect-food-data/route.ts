@@ -1,10 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+function getSupabaseClient() {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  if (!supabaseUrl || !supabaseKey) {
+    throw new Error('Missing Supabase environment variables');
+  }
+
+  return createClient(supabaseUrl, supabaseKey);
+}
 
 // 示例食物数据 - 实际使用时可以从数据库或外部API获取
 const sampleFoodData = [
@@ -78,6 +84,8 @@ export async function POST(request: NextRequest) {
     const { action } = await request.json();
 
     if (action === 'collect') {
+      const supabase = getSupabaseClient();
+
       // 插入食物数据到数据库
       const results = [];
 
@@ -108,6 +116,8 @@ export async function POST(request: NextRequest) {
     }
 
     if (action === 'list') {
+      const supabase = getSupabaseClient();
+
       // 获取现有食物数据
       const { data, error } = await supabase
         .from('food_library')
@@ -135,6 +145,8 @@ export async function POST(request: NextRequest) {
 
 export async function GET() {
   try {
+    const supabase = getSupabaseClient();
+
     // 获取数据库统计信息
     const { data: totalFoods, error: countError } = await supabase
       .from('food_library')
@@ -147,8 +159,7 @@ export async function GET() {
     // 获取分类统计
     const { data: categoryStats, error: statsError } = await supabase
       .from('food_library')
-      .select('category')
-      .select('category, count', { count: 'exact' });
+      .select('category');
 
     if (statsError) {
       return NextResponse.json({ error: statsError.message }, { status: 500 });

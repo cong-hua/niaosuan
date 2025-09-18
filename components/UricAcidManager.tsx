@@ -220,6 +220,10 @@ const UNIT = 'μmol/L';
         recommendation: '男性尿酸正常值相对较高，但仍需注意控制'
       };
     }
+    return {
+      normalRange: '210-420 μmol/L (正常范围)',
+      recommendation: '请设置性别信息以获取更准确的建议'
+    };
   };
 
   return (
