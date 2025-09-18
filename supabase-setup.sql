@@ -12,6 +12,54 @@ CREATE TABLE IF NOT EXISTS food_library (
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
+-- 创建用户表
+CREATE TABLE IF NOT EXISTS users (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    email TEXT UNIQUE NOT NULL,
+    password_hash TEXT NOT NULL,
+    username TEXT UNIQUE,
+    phone TEXT,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 创建尿酸记录表
+CREATE TABLE IF NOT EXISTS uric_acid_records (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    value FLOAT8 NOT NULL CHECK (value > 0),
+    measurement_date TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    notes TEXT,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 创建索引提高查询性能
+CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
+CREATE INDEX IF NOT EXISTS idx_uric_acid_user_id ON uric_acid_records(user_id);
+CREATE INDEX IF NOT EXISTS idx_uric_acid_date ON uric_acid_records(measurement_date);
+
+-- 创建更新时间触发器函数
+CREATE OR REPLACE FUNCTION update_updated_at_column()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.updated_at = CURRENT_TIMESTAMP;
+    RETURN NEW;
+END;
+$$ language 'plpgsql';
+
+-- 为用户表创建更新时间触发器
+CREATE TRIGGER update_users_updated_at
+    BEFORE UPDATE ON users
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_at_column();
+
+-- 为尿酸记录表创建更新时间触发器
+CREATE TRIGGER update_uric_acid_records_updated_at
+    BEFORE UPDATE ON uric_acid_records
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_at_column();
+
 -- 插入样例数据
 INSERT INTO food_library (name_cn, category, purine_level, purine_mg, description) VALUES
 ('红烧牛肉', '肉类', 'high', 110, '嘌呤非常高，痛风患者请避免'),

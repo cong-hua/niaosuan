@@ -35,3 +35,38 @@ export const PURINE_GUIDE: Record<PurineStatus, PurineGuide> = {
 };
 
 export const MAX_UPLOAD_SIZE = 5 * 1024 * 1024; // 5MB
+
+// 嘌呤级别标准 (mg/100g)
+export const PURINE_THRESHOLDS = {
+  LOW: 50,      // 低嘌呤: ≤ 50 mg/100g
+  HIGH: 150     // 高嘌呤: > 150 mg/100g (中嘌呤: 50-150 mg/100g)
+} as const;
+
+// 根据嘌呤含量计算嘌呤级别
+export function getPurineLevel(purineMg: number | null | undefined): PurineStatus {
+  if (purineMg === null || purineMg === undefined || purineMg < 0) {
+    return "unknown";
+  }
+
+  if (purineMg <= PURINE_THRESHOLDS.LOW) {
+    return "low";
+  } else if (purineMg <= PURINE_THRESHOLDS.HIGH) {
+    return "mid";
+  } else {
+    return "high";
+  }
+}
+
+// 获取嘌呤级别描述
+export function getPurineLevelDescription(level: PurineStatus): string {
+  switch (level) {
+    case "low":
+      return "低嘌呤 (≤ 50 mg/100g)";
+    case "mid":
+      return "中嘌呤 (50-150 mg/100g)";
+    case "high":
+      return "高嘌呤 (> 150 mg/100g)";
+    case "unknown":
+      return "待确认";
+  }
+}

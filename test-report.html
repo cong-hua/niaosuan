@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>医疗检验报告</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .report { border: 1px solid #ccc; padding: 20px; max-width: 600px; }
+        .header { text-align: center; margin-bottom: 20px; }
+        .result { margin: 10px 0; }
+        .value { font-weight: bold; color: #333; }
+        .normal { color: green; }
+        .high { color: red; }
+    </style>
+</head>
+<body>
+    <div class="report">
+        <div class="header">
+            <h2>生化检验报告单</h2>
+            <p>检验日期：2024-03-15</p>
+            <p>姓名：张三 | 性别：男 | 年龄：35岁</p>
+        </div>
+
+        <table border="1" width="100%">
+            <tr>
+                <th>检验项目</th>
+                <th>结果</th>
+                <th>单位</th>
+                <th>参考范围</th>
+                <th>状态</th>
+            </tr>
+            <tr>
+                <td>尿酸 (UA)</td>
+                <td class="value">425</td>
+                <td>μmol/L</td>
+                <td>150-420</td>
+                <td class="high">偏高</td>
+            </tr>
+            <tr>
+                <td>肌酐</td>
+                <td>75</td>
+                <td>μmol/L</td>
+                <td>59-104</td>
+                <td class="normal">正常</td>
+            </tr>
+            <tr>
+                <td>尿素氮</td>
+                <td>4.8</td>
+                <td>mmol/L</td>
+                <td>3.2-7.1</td>
+                <td class="normal">正常</td>
+            </tr>
+        </table>
+
+        <div class="result">
+            <p><strong>检验医生：</strong>李医生</p>
+            <p><strong>报告日期：</strong>2024-03-15</p>
+        </div>
+    </div>
+</body>
+</html>

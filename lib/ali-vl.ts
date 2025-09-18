@@ -1,7 +1,7 @@
 import { createHash } from "crypto";
 
 const DEFAULT_ENDPOINT = "https://dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation";
-const TIMEOUT_MS = 30000; // 30秒超时
+const TIMEOUT_MS = 60000; // 60秒超时，医疗报告识别需要更长时间
 const MAX_RETRIES = 2; // 最大重试次数
 
 export type IdentifyResult = {
@@ -10,6 +10,14 @@ export type IdentifyResult = {
   raw?: unknown;
   fingerprint?: string;
   label?: string;
+};
+
+export type MedicalReportResult = {
+  description: string;
+  label?: string;
+  rawText?: string;
+  raw?: unknown;
+  fingerprint?: string;
 };
 
 class AliVlError extends Error {
@@ -199,4 +207,107 @@ async function safeJson(response: Response) {
   } catch (error) {
     return { error: "Failed to parse JSON", raw: await response.text() };
   }
+}
+
+export async function identifyMedicalReport(imageBuffer: Buffer): Promise<MedicalReportResult> {
+  // 复用现有的食物识别函数，但使用医疗报告专用的prompt
+  const apiKey = process.env.ALIYUN_API_KEY;
+  const endpoint = process.env.ALIYUN_VL_ENDPOINT ?? DEFAULT_ENDPOINT;
+
+  if (!apiKey) {
+    throw new AliVlError("缺少通义千问 API Key，请在环境变量中配置 ALIYUN_API_KEY。");
+  }
+
+  const base64 = imageBuffer.toString("base64");
+  const imageHash = createHash("md5").update(imageBuffer).digest("hex");
+
+  // 使用与食物识别相同的成功payload结构，但更改prompt
+  const payload = {
+    model: "qwen-vl-plus", // 使用与食物识别相同的模型
+    input: {
+      messages: [
+        {
+          role: "user",
+          content: [
+            {
+              type: "text",
+              text: "请仔细识别这张医疗检验报告中的尿酸值和检测日期。尿酸值通常标注为尿酸、UA或URIC，单位可能是μmol/L、mmol/L或mg/dL。请返回完整的文字内容，特别是数字部分。"
+            },
+            { type: "image", image: `data:image/jpeg;base64,${base64}` }
+          ]
+        }
+      ]
+    }
+  };
+
+  // 使用与食物识别完全相同的重试和错误处理逻辑
+  let lastError: Error | null = null;
+
+  for (let attempt = 1; attempt <= MAX_RETRIES + 1; attempt++) {
+    try {
+      console.log(`医疗报告识别尝试 ${attempt}/${MAX_RETRIES + 1}`);
+
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), TIMEOUT_MS);
+
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${apiKey}`
+        },
+        body: JSON.stringify(payload),
+        signal: controller.signal
+      });
+
+      clearTimeout(timeoutId);
+
+      if (!response.ok) {
+        const errorBody = await safeJson(response);
+        throw new AliVlError(
+          `医疗报告识别失败（${response.status}）`,
+          response.status,
+          errorBody
+        );
+      }
+
+      const data = await response.json();
+      const rawText = collectRawText(data);
+
+      console.log(`医疗报告识别原始文本: "${rawText.substring(0, 200)}..."`);
+
+      if (!rawText || rawText.trim().length === 0) {
+        throw new AliVlError("未能识别出医疗报告内容，请确保图片清晰且包含检验信息。", response.status, data);
+      }
+
+      console.log(`医疗报告识别成功 (尝试 ${attempt})`);
+      return {
+        description: rawText,
+        label: "医疗检验报告",
+        rawText,
+        raw: data,
+        fingerprint: imageHash
+      };
+
+    } catch (error) {
+      lastError = error instanceof Error ? error : new Error(String(error));
+      console.error(`医疗报告识别尝试 ${attempt} 失败:`, lastError.message);
+
+      // 使用与食物识别相同的重试逻辑
+      if (attempt <= MAX_RETRIES &&
+          (lastError.message.includes("fetch") ||
+           lastError.message.includes("timeout") ||
+           lastError.message.includes("网络") ||
+           lastError.message.includes("AbortError"))) {
+
+        const waitTime = attempt * 1000;
+        console.log(`等待 ${waitTime}ms 后重试...`);
+        await new Promise(resolve => setTimeout(resolve, waitTime));
+      } else {
+        break;
+      }
+    }
+  }
+
+  throw lastError || new AliVlError("医疗报告识别服务暂时不可用，请稍后再试或手动输入尿酸值");
 }

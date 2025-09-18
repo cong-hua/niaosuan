@@ -1,0 +1,1629 @@
+[
+  {
+    "name_cn": "糙米",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为35mg/100g",
+    "purine_level": "low",
+    "purine_mg": 35
+  },
+  {
+    "name_cn": "小麦",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "麸麦"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为12.1mg/100g",
+    "purine_level": "low",
+    "purine_mg": 12.1
+  },
+  {
+    "name_cn": "面粉",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "白面",
+      "小麦粉"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为26mg/100g",
+    "purine_level": "low",
+    "purine_mg": 26
+  },
+  {
+    "name_cn": "面条",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "挂面",
+      "卫生面",
+      "汤面"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为19.8mg/100g",
+    "purine_level": "low",
+    "purine_mg": 19.8
+  },
+  {
+    "name_cn": "高粱米",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "白高粱",
+      "红高粱",
+      "黄高粱"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为15mg/100g",
+    "purine_level": "low",
+    "purine_mg": 15
+  },
+  {
+    "name_cn": "玉米",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "粟米"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为9.4mg/100g",
+    "purine_level": "low",
+    "purine_mg": 9.4
+  },
+  {
+    "name_cn": "米粉",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为11.1mg/100g",
+    "purine_level": "low",
+    "purine_mg": 11.1
+  },
+  {
+    "name_cn": "麦片",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为24.4mg/100g",
+    "purine_level": "low",
+    "purine_mg": 24.4
+  },
+  {
+    "name_cn": "糯米",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为50mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 50
+  },
+  {
+    "name_cn": "米糠",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为54mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 54
+  },
+  {
+    "name_cn": "芋头",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "香芋",
+      "青芋",
+      "毛芋头",
+      "芋艿"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为10.1mg/100g",
+    "purine_level": "low",
+    "purine_mg": 10.1
+  },
+  {
+    "name_cn": "荸荠/马蹄",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "马蹄",
+      "水栗"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为2.6mg/100g",
+    "purine_level": "low",
+    "purine_mg": 2.6
+  },
+  {
+    "name_cn": "大豆/黄豆",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "菽",
+      "黄豆"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为27mg/100g",
+    "purine_level": "low",
+    "purine_mg": 27
+  },
+  {
+    "name_cn": "普通大米",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为35mg/100g",
+    "purine_level": "low",
+    "purine_mg": 35
+  },
+  {
+    "name_cn": "土豆淀粉",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "马铃薯淀粉"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为5mg/100g",
+    "purine_level": "low",
+    "purine_mg": 5
+  },
+  {
+    "name_cn": "小麦胚芽",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "麦芽粉",
+      "胚芽"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为25mg/100g",
+    "purine_level": "low",
+    "purine_mg": 25
+  },
+  {
+    "name_cn": "燕麦",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "皮燕麦"
+    ],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为59mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 59
+  },
+  {
+    "name_cn": "薏仁米",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为25mg/100g",
+    "purine_level": "low",
+    "purine_mg": 25
+  },
+  {
+    "name_cn": "通心粉",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为16.5mg/100g",
+    "purine_level": "low",
+    "purine_mg": 16.5
+  },
+  {
+    "name_cn": "干淀粉",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为14.8mg/100g",
+    "purine_level": "low",
+    "purine_mg": 14.8
+  },
+  {
+    "name_cn": "木薯粉",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为6mg/100g",
+    "purine_level": "low",
+    "purine_mg": 6
+  },
+  {
+    "name_cn": "甘薯（红心，杭州）",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "红薯"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为19mg/100g",
+    "purine_level": "low",
+    "purine_mg": 19
+  },
+  {
+    "name_cn": "冬粉",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为7.8mg/100g",
+    "purine_level": "low",
+    "purine_mg": 7.8
+  },
+  {
+    "name_cn": "面线",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为19.8mg/100g",
+    "purine_level": "low",
+    "purine_mg": 19.8
+  },
+  {
+    "name_cn": "麦芽",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "高嘌呤食物，痛风患者应避免食用，嘌呤含量为500mg/100g",
+    "purine_level": "high",
+    "purine_mg": 500
+  },
+  {
+    "name_cn": "黑麦等制成的薄脆饼干",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为60mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 60
+  },
+  {
+    "name_cn": "树薯粉",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为6mg/100g",
+    "purine_level": "low",
+    "purine_mg": 6
+  },
+  {
+    "name_cn": "薏米",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为15mg/100g",
+    "purine_level": "low",
+    "purine_mg": 15
+  },
+  {
+    "name_cn": "薏苡仁",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为5mg/100g",
+    "purine_level": "low",
+    "purine_mg": 5
+  },
+  {
+    "name_cn": "全麦",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为24.4mg/100g",
+    "purine_level": "low",
+    "purine_mg": 24.4
+  },
+  {
+    "name_cn": "方便面",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "方便面汤",
+      "即食面",
+      "泡面"
+    ],
+    "description": "高嘌呤食物，痛风患者应避免食用，嘌呤含量为150mg/100g",
+    "purine_level": "high",
+    "purine_mg": 150
+  },
+  {
+    "name_cn": "三角麦",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为25mg/100g",
+    "purine_level": "low",
+    "purine_mg": 25
+  },
+  {
+    "name_cn": "乌麦",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为25mg/100g",
+    "purine_level": "low",
+    "purine_mg": 25
+  },
+  {
+    "name_cn": "花荞",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为25mg/100g",
+    "purine_level": "low",
+    "purine_mg": 25
+  },
+  {
+    "name_cn": "莜麦",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为25mg/100g",
+    "purine_level": "low",
+    "purine_mg": 25
+  },
+  {
+    "name_cn": "山芋",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "山竽"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为10.1mg/100g",
+    "purine_level": "low",
+    "purine_mg": 10.1
+  },
+  {
+    "name_cn": "番薯/蕃薯",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "甜薯",
+      "地瓜",
+      "红薯",
+      "白薯",
+      "甘薯"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为5.6mg/100g",
+    "purine_level": "low",
+    "purine_mg": 5.6
+  },
+  {
+    "name_cn": "肥大米",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为5.6mg/100g",
+    "purine_level": "low",
+    "purine_mg": 5.6
+  },
+  {
+    "name_cn": "番芋",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为5.6mg/100g",
+    "purine_level": "low",
+    "purine_mg": 5.6
+  },
+  {
+    "name_cn": "地瓜",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "凉薯",
+      "土瓜"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为13mg/100g",
+    "purine_level": "low",
+    "purine_mg": 13
+  },
+  {
+    "name_cn": "大麦",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "牟麦",
+      "饭麦",
+      "赤膊麦"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为47mg/100g",
+    "purine_level": "low",
+    "purine_mg": 47
+  },
+  {
+    "name_cn": "精白面条",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "精白面粉"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为2.3mg/100g",
+    "purine_level": "low",
+    "purine_mg": 2.3
+  },
+  {
+    "name_cn": "白米饭",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为27.1mg/100g",
+    "purine_level": "low",
+    "purine_mg": 27.1
+  },
+  {
+    "name_cn": "精白面包",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为1.7mg/100g",
+    "purine_level": "low",
+    "purine_mg": 1.7
+  },
+  {
+    "name_cn": "风腊",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "粟子",
+      "毛栗",
+      "板栗",
+      "风栗"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为34.6mg/100g",
+    "purine_level": "low",
+    "purine_mg": 34.6
+  },
+  {
+    "name_cn": "肠粉",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "拉肠"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为25mg/100g",
+    "purine_level": "low",
+    "purine_mg": 25
+  },
+  {
+    "name_cn": "馒头",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "馍馍",
+      "蒸馍"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为27mg/100g",
+    "purine_level": "low",
+    "purine_mg": 27
+  },
+  {
+    "name_cn": "面包（去皮）",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为50mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 50
+  },
+  {
+    "name_cn": "木薯",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "树葛"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为31mg/100g",
+    "purine_level": "low",
+    "purine_mg": 31
+  },
+  {
+    "name_cn": "稻花香米",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "香禾米",
+      "香稻"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为41mg/100g",
+    "purine_level": "low",
+    "purine_mg": 41
+  },
+  {
+    "name_cn": "陈醋",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "山西老陈醋"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为12mg/100g",
+    "purine_level": "low",
+    "purine_mg": 12
+  },
+  {
+    "name_cn": "甘薯（紫心，杭州）",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "紫薯",
+      "黑薯",
+      "苕薯"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为24mg/100g",
+    "purine_level": "low",
+    "purine_mg": 24
+  },
+  {
+    "name_cn": "面筋",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "水面筋",
+      "素面筋",
+      "油面筋"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为25mg/100g",
+    "purine_level": "low",
+    "purine_mg": 25
+  },
+  {
+    "name_cn": "大米粥",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为25mg/100g",
+    "purine_level": "low",
+    "purine_mg": 25
+  },
+  {
+    "name_cn": "河粉",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "沙河粉",
+      "米面",
+      "粿条"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为25mg/100g",
+    "purine_level": "low",
+    "purine_mg": 25
+  },
+  {
+    "name_cn": "葛根粉",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "粉葛",
+      "葛粉"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用",
+    "purine_level": "low",
+    "purine_mg": 0
+  },
+  {
+    "name_cn": "糍粑",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "糯米粑"
+    ],
+    "description": "高嘌呤食物，痛风患者应避免食用，嘌呤含量为87.5mg/100g",
+    "purine_level": "high",
+    "purine_mg": 87.5
+  },
+  {
+    "name_cn": "挂面",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "卷面",
+      "筒子面",
+      "卫生面",
+      "干面条"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为21mg/100g",
+    "purine_level": "low",
+    "purine_mg": 21
+  },
+  {
+    "name_cn": "西米",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "西谷米"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为25mg/100g",
+    "purine_level": "low",
+    "purine_mg": 25
+  },
+  {
+    "name_cn": "花卷",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为45mg/100g",
+    "purine_level": "low",
+    "purine_mg": 45
+  },
+  {
+    "name_cn": "包子(含酵母粉)",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "肉包子"
+    ],
+    "description": "高嘌呤食物，痛风患者应避免食用，嘌呤含量为87.5mg/100g",
+    "purine_level": "high",
+    "purine_mg": 87.5
+  },
+  {
+    "name_cn": "培根",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "烟肉"
+    ],
+    "description": "高嘌呤食物，痛风患者应避免食用，嘌呤含量为87.5mg/100g",
+    "purine_level": "high",
+    "purine_mg": 87.5
+  },
+  {
+    "name_cn": "拉皮",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "东北拉皮",
+      "肉丝拉皮"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为3mg/100g",
+    "purine_level": "low",
+    "purine_mg": 3
+  },
+  {
+    "name_cn": "凉粉",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为25mg/100g",
+    "purine_level": "low",
+    "purine_mg": 25
+  },
+  {
+    "name_cn": "面皮",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为25mg/100g",
+    "purine_level": "low",
+    "purine_mg": 25
+  },
+  {
+    "name_cn": "粉条",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "水晶粉条",
+      "红薯粉条",
+      "马铃薯粉条"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为2mg/100g",
+    "purine_level": "low",
+    "purine_mg": 2
+  },
+  {
+    "name_cn": "黑苦荞",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "苦荞麦",
+      "黑苦荞茶",
+      "黑苦荞麦",
+      "苦荞茶",
+      "黑珍珠"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为25mg/100g",
+    "purine_level": "low",
+    "purine_mg": 25
+  },
+  {
+    "name_cn": "油条",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "果子",
+      "大油条",
+      "大果子",
+      "油炸鬼"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为19mg/100g",
+    "purine_level": "low",
+    "purine_mg": 19
+  },
+  {
+    "name_cn": "无馅汤圆",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "汤圆",
+      "浮元子",
+      "圆子"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为25mg/100g",
+    "purine_level": "low",
+    "purine_mg": 25
+  },
+  {
+    "name_cn": "芝麻汤圆",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "麻心汤圆",
+      "汤圆",
+      "浮元子",
+      "圆子"
+    ],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为80mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 80
+  },
+  {
+    "name_cn": "肉粽子",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "粽子",
+      "咸肉粽",
+      "枧水粽",
+      "糯米粽",
+      "碱水粽"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为18mg/100g",
+    "purine_level": "low",
+    "purine_mg": 18
+  },
+  {
+    "name_cn": "精粉",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "精面粉",
+      "精白面粉"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为25mg/100g",
+    "purine_level": "low",
+    "purine_mg": 25
+  },
+  {
+    "name_cn": "白米",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为18.1mg/100g",
+    "purine_level": "low",
+    "purine_mg": 18.1
+  },
+  {
+    "name_cn": "面包（带皮）",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为51mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 51
+  },
+  {
+    "name_cn": "全麦粉",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为42mg/100g",
+    "purine_level": "low",
+    "purine_mg": 42
+  },
+  {
+    "name_cn": "麻花",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为39mg/100g",
+    "purine_level": "low",
+    "purine_mg": 39
+  },
+  {
+    "name_cn": "富强粉",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为37mg/100g",
+    "purine_level": "low",
+    "purine_mg": 37
+  },
+  {
+    "name_cn": "煎饼（大米味）",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为36mg/100g",
+    "purine_level": "low",
+    "purine_mg": 36
+  },
+  {
+    "name_cn": "稻花香米",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为34mg/100g",
+    "purine_level": "low",
+    "purine_mg": 34
+  },
+  {
+    "name_cn": "油饼",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "油托"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为27mg/100g",
+    "purine_level": "low",
+    "purine_mg": 27
+  },
+  {
+    "name_cn": "烧饼",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为27mg/100g",
+    "purine_level": "low",
+    "purine_mg": 27
+  },
+  {
+    "name_cn": "北大荒饺子粉",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "饺子面粉"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为26mg/100g",
+    "purine_level": "low",
+    "purine_mg": 26
+  },
+  {
+    "name_cn": "小麦粉（绍兴）",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为25mg/100g",
+    "purine_level": "low",
+    "purine_mg": 25
+  },
+  {
+    "name_cn": "小麦粉（杭州）",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为22mg/100g",
+    "purine_level": "low",
+    "purine_mg": 22
+  },
+  {
+    "name_cn": "高筋粉",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "强力粉"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为21mg/100g",
+    "purine_level": "low",
+    "purine_mg": 21
+  },
+  {
+    "name_cn": "雪花粉（润良牌）",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "雪花面粉"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为18mg/100g",
+    "purine_level": "low",
+    "purine_mg": 18
+  },
+  {
+    "name_cn": "饺子粉（鹤泉牌）",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "饺子面粉"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为17mg/100g",
+    "purine_level": "low",
+    "purine_mg": 17
+  },
+  {
+    "name_cn": "虎皮糕",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "虎皮蛋糕"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为13mg/100g",
+    "purine_level": "low",
+    "purine_mg": 13
+  },
+  {
+    "name_cn": "长白糕",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "长白糕",
+      "长远糕",
+      "长软糕"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为13mg/100g",
+    "purine_level": "low",
+    "purine_mg": 13
+  },
+  {
+    "name_cn": "粳米",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "粳粟米",
+      "蓬莱米"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为31mg/100g",
+    "purine_level": "low",
+    "purine_mg": 31
+  },
+  {
+    "name_cn": "油炸糕",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为21mg/100g",
+    "purine_level": "low",
+    "purine_mg": 21
+  },
+  {
+    "name_cn": "粽子",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为12mg/100g",
+    "purine_level": "low",
+    "purine_mg": 12
+  },
+  {
+    "name_cn": "煎饼（玉米味）",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为46mg/100g",
+    "purine_level": "low",
+    "purine_mg": 46
+  },
+  {
+    "name_cn": "玉米面发糕",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为19mg/100g",
+    "purine_level": "low",
+    "purine_mg": 19
+  },
+  {
+    "name_cn": "小碴子",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "小馇子"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为10mg/100g",
+    "purine_level": "low",
+    "purine_mg": 10
+  },
+  {
+    "name_cn": "大碴子",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "大颗的玉米粒",
+      "大馇子"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为8mg/100g",
+    "purine_level": "low",
+    "purine_mg": 8
+  },
+  {
+    "name_cn": "雪饼",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "大米饼"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为28mg/100g",
+    "purine_level": "low",
+    "purine_mg": 28
+  },
+  {
+    "name_cn": "番薯粉干",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为2mg/100g",
+    "purine_level": "low",
+    "purine_mg": 2
+  },
+  {
+    "name_cn": "红薯（红心、杭州）",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "甜薯",
+      "地瓜",
+      "番薯",
+      "红薯"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为12mg/100g",
+    "purine_level": "low",
+    "purine_mg": 12
+  },
+  {
+    "name_cn": "马铃薯",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "洋芋",
+      "荷兰薯",
+      "地蛋",
+      "薯仔",
+      "土豆"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为13mg/100g",
+    "purine_level": "low",
+    "purine_mg": 13
+  },
+  {
+    "name_cn": "小米",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "粟米",
+      "谷子"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为20mg/100g",
+    "purine_level": "low",
+    "purine_mg": 20
+  },
+  {
+    "name_cn": "react",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为10mg/100g",
+    "purine_level": "low",
+    "purine_mg": 10
+  },
+  {
+    "name_cn": "麦麸",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "麦皮",
+      "麸子"
+    ],
+    "description": "高嘌呤食物，痛风患者应避免食用，嘌呤含量为87.5mg/100g",
+    "purine_level": "high",
+    "purine_mg": 87.5
+  },
+  {
+    "name_cn": "精白馒头",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "白馒头"
+    ],
+    "description": "高嘌呤食物，痛风患者应避免食用，嘌呤含量为87.5mg/100g",
+    "purine_level": "high",
+    "purine_mg": 87.5
+  },
+  {
+    "name_cn": "荞麦",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "净肠草",
+      "乌麦",
+      "三角麦"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为34mg/100g",
+    "purine_level": "low",
+    "purine_mg": 34
+  },
+  {
+    "name_cn": "玉米面",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "苞米面"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为12mg/100g",
+    "purine_level": "low",
+    "purine_mg": 12
+  },
+  {
+    "name_cn": "黑米",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为63mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 63
+  },
+  {
+    "name_cn": "凉薯",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "豆薯",
+      "沙葛",
+      "地萝卜"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为13mg/100g",
+    "purine_level": "low",
+    "purine_mg": 13
+  },
+  {
+    "name_cn": "五常639大米",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "六三九米"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为35mg/100g",
+    "purine_level": "low",
+    "purine_mg": 35
+  },
+  {
+    "name_cn": "江米",
+    "category": "谷薯类及其制品",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为48mg/100g",
+    "purine_level": "low",
+    "purine_mg": 48
+  },
+  {
+    "name_cn": "红米",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "红大米",
+      "红米稻",
+      "赤米"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为33mg/100g",
+    "purine_level": "low",
+    "purine_mg": 33
+  },
+  {
+    "name_cn": "黄米",
+    "category": "谷薯类及其制品",
+    "aliases": [
+      "夏小米",
+      "糜子"
+    ],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为16mg/100g",
+    "purine_level": "low",
+    "purine_mg": 16
+  },
+  {
+    "name_cn": "白带鱼皮",
+    "category": "肉／水产类",
+    "aliases": [],
+    "description": "极高嘌呤食物，痛风患者绝对禁止食用，嘌呤含量为350mg/100g",
+    "purine_level": "very_high",
+    "purine_mg": 350
+  },
+  {
+    "name_cn": "小鱼干",
+    "category": "肉／水产类",
+    "aliases": [],
+    "description": "极高嘌呤食物，痛风患者绝对禁止食用，嘌呤含量为1538mg/100g",
+    "purine_level": "very_high",
+    "purine_mg": 1538
+  },
+  {
+    "name_cn": "小牛颈肉",
+    "category": "肉／水产类",
+    "aliases": [],
+    "description": "高嘌呤食物，痛风患者应避免食用，嘌呤含量为150mg/100g",
+    "purine_level": "high",
+    "purine_mg": 150
+  },
+  {
+    "name_cn": "熏鲱鱼",
+    "category": "肉／水产类",
+    "aliases": [],
+    "description": "高嘌呤食物，痛风患者应避免食用，嘌呤含量为378mg/100g",
+    "purine_level": "high",
+    "purine_mg": 378
+  },
+  {
+    "name_cn": "胰脏",
+    "category": "肉／水产类",
+    "aliases": [],
+    "description": "极高嘌呤食物，痛风患者绝对禁止食用，嘌呤含量为825mg/100g",
+    "purine_level": "very_high",
+    "purine_mg": 825
+  },
+  {
+    "name_cn": "羊脾",
+    "category": "肉／水产类",
+    "aliases": [],
+    "description": "高嘌呤食物，痛风患者应避免食用，嘌呤含量为196mg/100g",
+    "purine_level": "high",
+    "purine_mg": 196
+  },
+  {
+    "name_cn": "熏羊脾",
+    "category": "肉／水产类",
+    "aliases": [],
+    "description": "高嘌呤食物，痛风患者应避免食用，嘌呤含量为196mg/100g",
+    "purine_level": "high",
+    "purine_mg": 196
+  },
+  {
+    "name_cn": "公牛肝",
+    "category": "肉／水产类",
+    "aliases": [],
+    "description": "极高嘌呤食物，痛风患者绝对禁止食用，嘌呤含量为233mg/100g",
+    "purine_level": "very_high",
+    "purine_mg": 233
+  },
+  {
+    "name_cn": "炸鸡",
+    "category": "肉／水产类",
+    "aliases": [],
+    "description": "高嘌呤食物，痛风患者应避免食用，嘌呤含量为152mg/100g",
+    "purine_level": "high",
+    "purine_mg": 152
+  },
+  {
+    "name_cn": "猪脾/猪横脷",
+    "category": "肉／水产类",
+    "aliases": [],
+    "description": "高嘌呤食物，痛风患者应避免食用，嘌呤含量为270mg/100g",
+    "purine_level": "high",
+    "purine_mg": 270
+  },
+  {
+    "name_cn": "豆苗菜",
+    "category": "蔬菜类",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为52mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 52
+  },
+  {
+    "name_cn": "芦笋",
+    "category": "蔬菜类",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为28mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 28
+  },
+  {
+    "name_cn": "椰菜花",
+    "category": "蔬菜类",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为29mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 29
+  },
+  {
+    "name_cn": "蒜苔",
+    "category": "蔬菜类",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为30mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 30
+  },
+  {
+    "name_cn": "蒜黄",
+    "category": "蔬菜类",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为31mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 31
+  },
+  {
+    "name_cn": "蒜苗",
+    "category": "蔬菜类",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为32mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 32
+  },
+  {
+    "name_cn": "龙须菜",
+    "category": "蔬菜类",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为33mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 33
+  },
+  {
+    "name_cn": "柠檬萱草",
+    "category": "蔬菜类",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为34mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 34
+  },
+  {
+    "name_cn": "金针菜",
+    "category": "蔬菜类",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为35mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 35
+  },
+  {
+    "name_cn": "西兰花",
+    "category": "蔬菜类",
+    "aliases": [
+      "绿菜花"
+    ],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为36mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 36
+  },
+  {
+    "name_cn": "发芽的豆类",
+    "category": "豆类及豆制品",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为52mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 52
+  },
+  {
+    "name_cn": "纳豆",
+    "category": "豆类及豆制品",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为215mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 215
+  },
+  {
+    "name_cn": "豆芽",
+    "category": "豆类及豆制品",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为52mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 52
+  },
+  {
+    "name_cn": "发芽豆类",
+    "category": "豆类及豆制品",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为52mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 52
+  },
+  {
+    "name_cn": "黑豆",
+    "category": "豆类及豆制品",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为137mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 137
+  },
+  {
+    "name_cn": "红芸豆",
+    "category": "豆类及豆制品",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为126mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 126
+  },
+  {
+    "name_cn": "干黄豆",
+    "category": "豆类及豆制品",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为166mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 166
+  },
+  {
+    "name_cn": "豌豆",
+    "category": "豆类及豆制品",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为82mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 82
+  },
+  {
+    "name_cn": "荷兰豆",
+    "category": "豆类及豆制品",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为82mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 82
+  },
+  {
+    "name_cn": "绿豆",
+    "category": "豆类及豆制品",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为166mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 166
+  },
+  {
+    "name_cn": "无花果",
+    "category": "水果类",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为5mg/100g",
+    "purine_level": "low",
+    "purine_mg": 5
+  },
+  {
+    "name_cn": "椰蓉",
+    "category": "水果类",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为2mg/100g",
+    "purine_level": "low",
+    "purine_mg": 2
+  },
+  {
+    "name_cn": "榴莲",
+    "category": "水果类",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为3mg/100g",
+    "purine_level": "low",
+    "purine_mg": 3
+  },
+  {
+    "name_cn": "草莓",
+    "category": "水果类",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为4mg/100g",
+    "purine_level": "low",
+    "purine_mg": 4
+  },
+  {
+    "name_cn": "红车厘子",
+    "category": "水果类",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为5mg/100g",
+    "purine_level": "low",
+    "purine_mg": 5
+  },
+  {
+    "name_cn": "红樱桃",
+    "category": "水果类",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为5mg/100g",
+    "purine_level": "low",
+    "purine_mg": 5
+  },
+  {
+    "name_cn": "大樱桃",
+    "category": "水果类",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为5mg/100g",
+    "purine_level": "low",
+    "purine_mg": 5
+  },
+  {
+    "name_cn": "鹅莓",
+    "category": "水果类",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为4mg/100g",
+    "purine_level": "low",
+    "purine_mg": 4
+  },
+  {
+    "name_cn": "火龙果",
+    "category": "水果类",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为3mg/100g",
+    "purine_level": "low",
+    "purine_mg": 3
+  },
+  {
+    "name_cn": "奇异果",
+    "category": "水果类",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为8mg/100g",
+    "purine_level": "low",
+    "purine_mg": 8
+  },
+  {
+    "name_cn": "葵瓜子",
+    "category": "硬／干果类",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为79mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 79
+  },
+  {
+    "name_cn": "干葵花籽",
+    "category": "硬／干果类",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为79mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 79
+  },
+  {
+    "name_cn": "花生（熟）",
+    "category": "硬／干果类",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为79mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 79
+  },
+  {
+    "name_cn": "腰果",
+    "category": "硬／干果类",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为79mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 79
+  },
+  {
+    "name_cn": "野生榛子（熟）",
+    "category": "硬／干果类",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为79mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 79
+  },
+  {
+    "name_cn": "松子（熟）",
+    "category": "硬／干果类",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为79mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 79
+  },
+  {
+    "name_cn": "开心果（熟）",
+    "category": "硬／干果类",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为79mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 79
+  },
+  {
+    "name_cn": "白芝麻（熟）",
+    "category": "硬／干果类",
+    "aliases": [],
+    "description": "中等嘌呤食物，痛风患者需适量食用，嘌呤含量为57mg/100g",
+    "purine_level": "medium",
+    "purine_mg": 57
+  },
+  {
+    "name_cn": "干李子",
+    "category": "硬／干果类",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为5mg/100g",
+    "purine_level": "low",
+    "purine_mg": 5
+  },
+  {
+    "name_cn": "李干",
+    "category": "硬／干果类",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为5mg/100g",
+    "purine_level": "low",
+    "purine_mg": 5
+  },
+  {
+    "name_cn": "黑麦薄脆",
+    "category": "蛋／奶类",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为35mg/100g",
+    "purine_level": "low",
+    "purine_mg": 35
+  },
+  {
+    "name_cn": "蛋糕",
+    "category": "蛋／奶类",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为35mg/100g",
+    "purine_level": "low",
+    "purine_mg": 35
+  },
+  {
+    "name_cn": "奶粉",
+    "category": "蛋／奶类",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为15mg/100g",
+    "purine_level": "low",
+    "purine_mg": 15
+  },
+  {
+    "name_cn": "脱脂奶粉",
+    "category": "蛋／奶类",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为15mg/100g",
+    "purine_level": "low",
+    "purine_mg": 15
+  },
+  {
+    "name_cn": "鹌鹑蛋",
+    "category": "蛋／奶类",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为35mg/100g",
+    "purine_level": "low",
+    "purine_mg": 35
+  },
+  {
+    "name_cn": "炼乳",
+    "category": "蛋／奶类",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为15mg/100g",
+    "purine_level": "low",
+    "purine_mg": 15
+  },
+  {
+    "name_cn": "冰淇淋",
+    "category": "蛋／奶类",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为20mg/100g",
+    "purine_level": "low",
+    "purine_mg": 20
+  },
+  {
+    "name_cn": "乳酪",
+    "category": "蛋／奶类",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为15mg/100g",
+    "purine_level": "low",
+    "purine_mg": 15
+  },
+  {
+    "name_cn": "鸽子蛋",
+    "category": "蛋／奶类",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为35mg/100g",
+    "purine_level": "low",
+    "purine_mg": 35
+  },
+  {
+    "name_cn": "鹅蛋",
+    "category": "蛋／奶类",
+    "aliases": [],
+    "description": "低嘌呤食物，适合痛风患者食用，嘌呤含量为35mg/100g",
+    "purine_level": "low",
+    "purine_mg": 35
+  },
+  {
+    "name_cn": "黄酒",
+    "category": "酒／饮料类",
+    "aliases": [],
+    "description": "高嘌呤食物，痛风患者应避免食用，嘌呤含量为12mg/100g",
+    "purine_level": "high",
+    "purine_mg": 12
+  },
+  {
+    "name_cn": "日本清酒",
+    "category": "酒／饮料类",
+    "aliases": [],
+    "description": "高嘌呤食物，痛风患者应避免食用，嘌呤含量为12mg/100g",
+    "purine_level": "high",
+    "purine_mg": 12
+  },
+  {
+    "name_cn": "白兰地",
+    "category": "酒／饮料类",
+    "aliases": [],
+    "description": "高嘌呤食物，痛风患者应避免食用，嘌呤含量为12mg/100g",
+    "purine_level": "high",
+    "purine_mg": 12
+  },
+  {
+    "name_cn": "伏特加",
+    "category": "酒／饮料类",
+    "aliases": [],
+    "description": "高嘌呤食物，痛风患者应避免食用，嘌呤含量为12mg/100g",
+    "purine_level": "high",
+    "purine_mg": 12
+  },
+  {
+    "name_cn": "威士忌",
+    "category": "酒／饮料类",
+    "aliases": [],
+    "description": "高嘌呤食物，痛风患者应避免食用，嘌呤含量为12mg/100g",
+    "purine_level": "high",
+    "purine_mg": 12
+  },
+  {
+    "name_cn": "鸡尾酒",
+    "category": "酒／饮料类",
+    "aliases": [],
+    "description": "高嘌呤食物，痛风患者应避免食用，嘌呤含量为12mg/100g",
+    "purine_level": "high",
+    "purine_mg": 12
+  }
+]

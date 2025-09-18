@@ -6,6 +6,13 @@ import { UploadButton } from "@/components/upload-button";
 import { ResultCard } from "@/components/result-card";
 import { LoadingOverlay } from "@/components/loading-overlay";
 import { MAX_UPLOAD_SIZE, type PurineStatus } from "@/lib/purine";
+import AuthForm from "@/components/AuthForm";
+import UricAcidManager from "@/components/UricAcidManager";
+import TrendAnalysis from "@/components/TrendAnalysis";
+import UserProfile from "@/components/UserProfile";
+import LoginModal from "@/components/LoginModal";
+import FoodSearch from "@/components/FoodSearch";
+import { UserProvider } from "@/contexts/UserContext";
 
 type IdentifyResponse = {
   foodName: string;
@@ -30,6 +37,10 @@ export default function HomePage() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [retryFile, setRetryFile] = useState<File | null>(null);
+  const [user, setUser] = useState<any>(null);
+  const [authMode, setAuthMode] = useState<'login' | 'register'>('login');
+  const [activeTab, setActiveTab] = useState<'home' | 'search' | 'records' | 'trends' | 'profile'>('home');
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
   const handleFileSelected = async (file: File) => {
     if (file.size > MAX_UPLOAD_SIZE) {
@@ -84,75 +95,154 @@ export default function HomePage() {
     };
   }, [previewUrl]);
 
+  const handleAuthSuccess = (userData: any) => {
+    setUser(userData);
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+  };
+
+  const handleTabChange = (tab: 'home' | 'search' | 'records' | 'trends' | 'profile') => {
+    if ((tab === 'records' || tab === 'trends') && !user) {
+      setShowLoginModal(true);
+      return;
+    }
+    setActiveTab(tab);
+  };
+
+  const handleUricAcidRecordClick = () => {
+    if (!user) {
+      setShowLoginModal(true);
+      return;
+    }
+    setActiveTab('records');
+  };
+
+  const handleTrendClick = () => {
+    if (!user) {
+      setShowLoginModal(true);
+      return;
+    }
+    setActiveTab('trends');
+  };
+
+  const handleProfileClick = () => {
+    setActiveTab('profile');
+  };
+
+  const handleHomeClick = () => {
+    setActiveTab('home');
+  };
+
+  const handleSearchClick = () => {
+    setActiveTab('search');
+  };
+
   return (
-    <div className="relative flex min-h-screen flex-col bg-gradient-to-br from-[#f0fff4] to-[#e6f7ff]">
-      <DesktopHeader />
-      <main className="flex flex-1 flex-col items-center justify-center px-4 pb-24 pt-12">
-        <div className="flex w-full max-w-2xl flex-col items-center gap-8 text-center">
-          <div className="relative w-full max-w-md">
-            <UploadButton onFileSelected={handleFileSelected} disabled={isLoading} />
-            {isLoading && <LoadingOverlay />}
-          </div>
-          <p className="text-gray-600">一键识别，检测嘌呤风险</p>
+    <UserProvider>
+      <div className="relative flex min-h-screen flex-col bg-gradient-to-br from-[#f0fff4] to-[#e6f7ff]">
+      <DesktopHeader
+        user={user}
+        onLogout={handleLogout}
+        onHomeClick={handleHomeClick}
+        onSearchClick={handleSearchClick}
+        onUricAcidRecordClick={handleUricAcidRecordClick}
+        onTrendClick={handleTrendClick}
+        onProfileClick={handleProfileClick}
+      />
 
-          {previewUrl && (
-            <div className="w-full max-w-lg overflow-hidden rounded-3xl bg-white/60 shadow">
-              <div className="relative h-64 w-full">
-                <Image
-                  src={previewUrl}
-                  alt="上传图片预览"
-                  fill
-                  className="object-cover"
-                  unoptimized
+      <div className="flex-1 px-4 pb-20 md:pb-24 pt-12 md:pt-16">
+        <div className="max-w-4xl mx-auto">
+  
+          {activeTab === 'home' ? (
+            <div className="flex flex-col items-center gap-8 text-center">
+              <div className="relative w-full max-w-md">
+                <UploadButton onFileSelected={handleFileSelected} disabled={isLoading} />
+                {isLoading && <LoadingOverlay />}
+              </div>
+              <p className="text-gray-600">一键识别，检测嘌呤风险</p>
+
+              {previewUrl && (
+                <div className="w-full max-w-lg overflow-hidden rounded-3xl bg-white/60 shadow">
+                  <div className="relative h-64 w-full">
+                    <Image
+                      src={previewUrl}
+                      alt="上传图片预览"
+                      fill
+                      className="object-cover"
+                      unoptimized
+                    />
+                  </div>
+                </div>
+              )}
+
+              {error && (
+                <div className="w-full max-w-lg rounded-3xl border border-red-200 bg-red-50 p-6 text-red-700">
+                  <div className="flex items-start gap-3">
+                    <div className="mt-0.5">
+                      <svg className="h-5 w-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-medium">识别失败</p>
+                      <p className="mt-1 text-sm">{error}</p>
+                      {retryFile && (
+                        <button
+                          onClick={handleRetry}
+                          disabled={isLoading}
+                          className="mt-3 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          {isLoading ? '重试中...' : '重新识别'}
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {result && (
+                <ResultCard
+                  foodName={result.display_name ?? result.name}
+                  status={result.purine_level}
+                  purineMg={result.purine_mg}
+                  summary={result.summary}
+                  dietAdvice={result.diet_advice}
+                  suitability={result.suitability}
+                  badgeLabel={result.badge_label}
                 />
-              </div>
+              )}
             </div>
-          )}
-
-          {error && (
-            <div className="w-full max-w-lg rounded-3xl border border-red-200 bg-red-50 p-6 text-red-700">
-              <div className="flex items-start gap-3">
-                <div className="mt-0.5">
-                  <svg className="h-5 w-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <div className="flex-1">
-                  <p className="font-medium">识别失败</p>
-                  <p className="mt-1 text-sm">{error}</p>
-                  {retryFile && (
-                    <button
-                      onClick={handleRetry}
-                      disabled={isLoading}
-                      className="mt-3 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      {isLoading ? '重试中...' : '重新识别'}
-                    </button>
-                  )}
-                </div>
-              </div>
-            </div>
-          )}
-
-          {result && (
-            <ResultCard
-              foodName={result.display_name ?? result.name}
-              status={result.purine_level}
-              purineMg={result.purine_mg}
-              summary={result.summary}
-              dietAdvice={result.diet_advice}
-              suitability={result.suitability}
-              badgeLabel={result.badge_label}
-            />
+          ) : activeTab === 'search' ? (
+            <FoodSearch />
+          ) : activeTab === 'records' ? (
+            <UricAcidManager user={user} />
+          ) : activeTab === 'trends' ? (
+            <TrendAnalysis user={user} />
+          ) : (
+            <UserProfile user={user} onAuthSuccess={handleAuthSuccess} onLogout={handleLogout} />
           )}
         </div>
-      </main>
-      <MobileNav />
-    </div>
+      </div>
+
+      <MobileNav activeTab={activeTab} onTabChange={handleTabChange} />
+
+      {showLoginModal && (
+        <LoginModal
+          onClose={() => setShowLoginModal(false)}
+          onAuthSuccess={(userData) => {
+            setUser(userData);
+            setShowLoginModal(false);
+          }}
+        />
+      )}
+      </div>
+    </UserProvider>
   );
 }
 
-function DesktopHeader() {
+function DesktopHeader({ user, onLogout, onHomeClick, onSearchClick, onUricAcidRecordClick, onTrendClick, onProfileClick }: { user: any; onLogout: () => void; onHomeClick: () => void; onSearchClick: () => void; onUricAcidRecordClick: () => void; onTrendClick: () => void; onProfileClick: () => void }) {
   return (
     <header className="sticky top-0 z-10 hidden w-full items-center justify-between border-b border-white/30 bg-white/40 px-12 py-4 backdrop-blur md:flex">
       <div className="flex items-center gap-3">
@@ -164,31 +254,78 @@ function DesktopHeader() {
           <p className="text-xs text-gray-500">即刻识别，掌握嘌呤风险</p>
         </div>
       </div>
-      <nav className="flex items-center gap-8 text-sm font-medium">
-        <a className="text-[#0e1b14] transition-colors hover:text-green-500" href="#">尿酸记录</a>
-        <a className="text-[#0e1b14] transition-colors hover:text-green-500" href="#">我的</a>
-      </nav>
+      <div className="flex items-center gap-6">
+        <nav className="flex items-center gap-8 text-sm font-medium">
+          <button onClick={onHomeClick} className="text-[#0e1b14] transition-colors hover:text-green-500">
+            食物识别
+          </button>
+          <button onClick={onSearchClick} className="text-[#0e1b14] transition-colors hover:text-green-500">
+            食物搜索
+          </button>
+          <button onClick={onUricAcidRecordClick} className="text-[#0e1b14] transition-colors hover:text-green-500">
+            尿酸记录
+          </button>
+          <button onClick={onTrendClick} className="text-[#0e1b14] transition-colors hover:text-green-500">
+            趋势
+          </button>
+          <button onClick={onProfileClick} className="text-[#0e1b14] transition-colors hover:text-green-500">
+            我的
+          </button>
+        </nav>
+        {user && (
+          <div className="flex items-center gap-3">
+            <span className="text-sm text-gray-700">
+              欢迎, {user.username || user.email}
+            </span>
+            <button
+              onClick={onLogout}
+              className="text-sm text-red-600 hover:text-red-800"
+            >
+              退出
+            </button>
+          </div>
+        )}
+      </div>
     </header>
   );
 }
 
-function MobileNav() {
+function MobileNav({ activeTab, onTabChange }: { activeTab: 'home' | 'search' | 'records' | 'trends' | 'profile'; onTabChange: (tab: 'home' | 'search' | 'records' | 'trends' | 'profile') => void }) {
   return (
     <nav className="fixed bottom-0 left-0 z-10 w-full border-t border-gray-200 bg-white/90 backdrop-blur md:hidden">
       <div className="mx-auto flex h-16 max-w-md items-center justify-around px-4 text-sm">
-        <button className="flex flex-col items-center gap-1 text-green-500">
+        <button
+          onClick={() => onTabChange('home')}
+          className={`flex flex-col items-center gap-1 ${activeTab === 'home' ? 'text-green-500' : 'text-gray-500'}`}
+        >
           <CameraIcon className="h-6 w-6" />
-          首页
+          食物识别
         </button>
-        <button className="flex flex-col items-center gap-1 text-gray-500">
+        <button
+          onClick={() => onTabChange('search')}
+          className={`flex flex-col items-center gap-1 ${activeTab === 'search' ? 'text-green-500' : 'text-gray-500'}`}
+        >
+          <SearchIcon className="h-6 w-6" />
+          食物搜索
+        </button>
+        <button
+          onClick={() => onTabChange('records')}
+          className={`flex flex-col items-center gap-1 ${activeTab === 'records' ? 'text-green-500' : 'text-gray-500'}`}
+        >
           <NoteIcon className="h-6 w-6" />
-          记录
+          尿酸记录
         </button>
-        <button className="flex flex-col items-center gap-1 text-gray-500">
+        <button
+          onClick={() => onTabChange('trends')}
+          className={`flex flex-col items-center gap-1 ${activeTab === 'trends' ? 'text-green-500' : 'text-gray-500'}`}
+        >
           <TrendIcon className="h-6 w-6" />
           趋势
         </button>
-        <button className="flex flex-col items-center gap-1 text-gray-500">
+        <button
+          onClick={() => onTabChange('profile')}
+          className={`flex flex-col items-center gap-1 ${activeTab === 'profile' ? 'text-green-500' : 'text-gray-500'}`}
+        >
           <UserIcon className="h-6 w-6" />
           我的
         </button>
@@ -303,6 +440,14 @@ function UserIcon({ className }: { className?: string }) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className={className}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 7.5a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.5 20.25a7.5 7.5 0 0 1 15 0" />
+    </svg>
+  );
+}
+
+function SearchIcon({ className }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className={className}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
     </svg>
   );
 }
