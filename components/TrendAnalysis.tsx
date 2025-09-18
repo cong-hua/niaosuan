@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import type { ComponentType } from 'react';
 import { useUser } from '@/contexts/UserContext';
 
 interface UricAcidRecord {
@@ -212,8 +213,8 @@ export default function TrendAnalysis({ user }: TrendAnalysisProps) {
 
           {/* 趋势图表 */}
           <div className="h-80 mb-6">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={chartData}>
+            <div className="w-full h-full">
+              <LineChart data={chartData} className="w-full h-full">
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis
                   dataKey="date"
@@ -238,7 +239,7 @@ export default function TrendAnalysis({ user }: TrendAnalysisProps) {
                   name="尿酸值"
                 />
               </LineChart>
-            </ResponsiveContainer>
+            </div>
           </div>
 
           {/* 健康建议 */}
