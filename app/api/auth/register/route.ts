@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { createUser } from "@/lib/supabase";
 import { CreateUserRequest } from "@/lib/supabase";
 
-export const runtime = "nodejs";
+export const runtime = "edge";
 
 export async function POST(request: Request) {
   try {

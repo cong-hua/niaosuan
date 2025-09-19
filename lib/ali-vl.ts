@@ -1,4 +1,4 @@
-import { createHash } from "crypto";
+// Using Web Crypto API for Edge Runtime compatibility
 
 const DEFAULT_ENDPOINT = "https://dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation";
 const TIMEOUT_MS = 60000; // 60秒超时，医疗报告识别需要更长时间
@@ -36,7 +36,10 @@ export async function identifyFood(imageBuffer: Buffer): Promise<IdentifyResult>
   }
 
   const base64 = imageBuffer.toString("base64");
-  const imageHash = createHash("md5").update(imageBuffer).digest("hex");
+  const hashBuffer = await crypto.subtle.digest('MD5', imageBuffer);
+  const imageHash = Array.from(new Uint8Array(hashBuffer))
+    .map(b => b.toString(16).padStart(2, '0'))
+    .join('');
 
   const payload = {
     model: "qwen-vl-max",
@@ -219,7 +222,10 @@ export async function identifyMedicalReport(imageBuffer: Buffer): Promise<Medica
   }
 
   const base64 = imageBuffer.toString("base64");
-  const imageHash = createHash("md5").update(imageBuffer).digest("hex");
+  const hashBuffer = await crypto.subtle.digest('MD5', imageBuffer);
+  const imageHash = Array.from(new Uint8Array(hashBuffer))
+    .map(b => b.toString(16).padStart(2, '0'))
+    .join('');
 
   // 使用与食物识别相同的成功payload结构，但更改prompt
   const payload = {

@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { identifyMedicalReport } from "@/lib/ali-vl";
 import { MAX_UPLOAD_SIZE } from "@/lib/purine";
 
-export const runtime = "nodejs";
+export const runtime = "edge";
 
 interface UricAcidExtraction {
   value: number;
