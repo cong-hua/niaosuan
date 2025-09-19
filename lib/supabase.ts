@@ -60,7 +60,7 @@ const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 function assertEnv() {
   if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY) {
-    throw new Error("Supabase 环境变量缺失，请配置 SUPABASE_URL 与 SUPABASE_SERVICE_KEY。");
+    throw new Error("Supabase 环境变量缺失，请配置 SUPABASE_URL 与 SUPABASE_SERVICE_ROLE_KEY。");
   }
 }
 
