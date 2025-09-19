@@ -34,7 +34,7 @@ export default function TrendAnalysis({ user }: TrendAnalysisProps) {
     setLoading(true);
     setError('');
     try {
-      const response = await fetch(`http://localhost:13000/api/uric-acid/records?user_id=${user.id}`);
+      const response = await fetch(`/api/uric-acid/records?user_id=${user.id}`);
       const data = await response.json();
 
       if (!response.ok) {

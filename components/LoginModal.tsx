@@ -33,7 +33,7 @@ export default function LoginModal({ onClose, onAuthSuccess }: LoginModalProps) 
 
     try {
       const endpoint = mode === 'register' ? '/api/auth/register' : '/api/auth/login';
-      const response = await fetch(`http://localhost:13000${endpoint}`, {
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

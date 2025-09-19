@@ -43,7 +43,7 @@ const UNIT = 'μmol/L';
     setLoading(true);
     setError('');
     try {
-      const response = await fetch(`http://localhost:13000/api/uric-acid/records?user_id=${user.id}`);
+      const response = await fetch(`/api/uric-acid/records?user_id=${user.id}`);
       const data = await response.json();
 
       if (!response.ok) {
@@ -103,8 +103,8 @@ const UNIT = 'μmol/L';
     try {
       const isEditing = editingRecord !== null;
       const url = isEditing
-        ? `http://localhost:13000/api/uric-acid/records/${editingRecord.id}`
-        : 'http://localhost:13000/api/uric-acid/records';
+        ? `/api/uric-acid/records/${editingRecord.id}`
+        : '/api/uric-acid/records';
       const method = isEditing ? 'PUT' : 'POST';
 
       const response = await fetch(url, {
@@ -169,7 +169,7 @@ const UNIT = 'μmol/L';
     setError('');
 
     try {
-      const response = await fetch(`http://localhost:13000/api/uric-acid/records/${recordId}`, {
+      const response = await fetch(`/api/uric-acid/records/${recordId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

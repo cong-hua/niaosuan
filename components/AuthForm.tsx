@@ -48,7 +48,7 @@ export default function AuthForm({ mode, onModeChange, onAuthSuccess }: AuthForm
         password: formData.password
       };
 
-      const response = await fetch(`http://localhost:13000${endpoint}`, {
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
