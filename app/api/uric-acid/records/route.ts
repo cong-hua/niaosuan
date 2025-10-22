@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { createUricAcidRecord, getUricAcidRecords } from "@/lib/supabase";
 import { CreateUricAcidRecordRequest } from "@/lib/supabase";
 
-export const runtime = "edge";
+// export const runtime = "edge"; // Disabled for compatibility
 
 export async function POST(request: Request) {
   try {

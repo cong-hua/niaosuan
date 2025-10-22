@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { useUser } from '@/contexts/UserContext';
+import RecipeRecommendation from '@/components/RecipeRecommendation';
 
 interface UricAcidRecord {
   id: string;
@@ -264,6 +265,9 @@ export default function TrendAnalysis({ user }: TrendAnalysisProps) {
                               </div>
             </div>
           )}
+
+          {/* 食谱推荐 */}
+          <RecipeRecommendation user={user} />
         </>
       )}
     </div>

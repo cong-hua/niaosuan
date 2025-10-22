@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { loginUser } from "@/lib/supabase";
 import { LoginRequest } from "@/lib/supabase";
 
-export const runtime = "edge";
+// // export const runtime = "edge"; // Disabled for compatibility // Disabled for bcrypt compatibility
 
 export async function POST(request: Request) {
   try {

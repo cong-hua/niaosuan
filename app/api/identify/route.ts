@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { identifyFood } from "@/lib/ali-vl";
 import { MAX_UPLOAD_SIZE } from "@/lib/purine";
 
-export const runtime = "edge";
+// export const runtime = "edge"; // Disabled for compatibility
 
 export async function POST(request: Request) {
   const startTime = Date.now();

@@ -153,8 +153,8 @@ export async function createUser(userData: CreateUserRequest): Promise<User> {
     }
   });
 
-  const bcrypt = await import('bcryptjs');
-  const passwordHash = await bcrypt.hash(userData.password, 10);
+  const { hashPassword } = await import('@/lib/password');
+  const passwordHash = await hashPassword(userData.password);
 
   const { data, error } = await client
     .from('users')
@@ -203,8 +203,8 @@ export async function loginUser(loginData: LoginRequest): Promise<User> {
     throw new Error('邮箱或密码错误');
   }
 
-  const bcrypt = await import('bcryptjs');
-  const isPasswordValid = await bcrypt.compare(loginData.password, user.password_hash);
+  const { comparePassword } = await import('@/lib/password');
+  const isPasswordValid = await comparePassword(loginData.password, user.password_hash);
 
   if (!isPasswordValid) {
     throw new Error('邮箱或密码错误');

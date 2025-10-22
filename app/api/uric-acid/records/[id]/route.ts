@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { updateUricAcidRecord, deleteUricAcidRecord, UpdateUricAcidRecordRequest } from "@/lib/supabase";
 
-export const runtime = "edge";
+// export const runtime = "edge"; // Disabled for compatibility
 
 export async function PUT(
   request: Request,

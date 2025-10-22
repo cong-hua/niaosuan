@@ -1,7 +1,7 @@
 import { getAllFoods, searchFoods } from '@/lib/supabase';
 import { NextResponse } from 'next/server';
 
-export const runtime = "edge";
+// export const runtime = "edge"; // Disabled for compatibility
 
 export async function GET(request: Request) {
   try {

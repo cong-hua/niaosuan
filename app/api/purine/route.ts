@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { getFoodRiskByName } from "@/lib/supabase";
 import { PURINE_GUIDE } from "@/lib/purine";
 
-export const runtime = "edge";
+// export const runtime = "edge"; // Disabled for compatibility
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);

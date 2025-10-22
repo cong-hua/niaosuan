@@ -36,7 +36,7 @@ export async function identifyFood(imageBuffer: Buffer): Promise<IdentifyResult>
   }
 
   const base64 = imageBuffer.toString("base64");
-  const hashBuffer = await crypto.subtle.digest('MD5', imageBuffer);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', imageBuffer);
   const imageHash = Array.from(new Uint8Array(hashBuffer))
     .map(b => b.toString(16).padStart(2, '0'))
     .join('');
@@ -222,7 +222,7 @@ export async function identifyMedicalReport(imageBuffer: Buffer): Promise<Medica
   }
 
   const base64 = imageBuffer.toString("base64");
-  const hashBuffer = await crypto.subtle.digest('MD5', imageBuffer);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', imageBuffer);
   const imageHash = Array.from(new Uint8Array(hashBuffer))
     .map(b => b.toString(16).padStart(2, '0'))
     .join('');
