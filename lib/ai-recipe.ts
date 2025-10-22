@@ -4,7 +4,7 @@ const DEFAULT_ENDPOINT = "https://dashscope.aliyuncs.com/api/v1/services/aigc/te
 const TIMEOUT_MS = 90000; // 90秒超时，食谱生成需要更长时间
 const MAX_RETRIES = 2; // 最大重试次数
 
-import type { Recipe, DailyMenu, RecipeGenerationRequest } from "@/lib/recipe";
+import type { Recipe, DailyMenu, RecipeGenerationRequest, Ingredient, NutritionInfo } from "@/lib/recipe";
 
 class AiRecipeError extends Error {
   constructor(message: string, public status?: number, public details?: unknown) {
@@ -384,27 +384,142 @@ function parseMenuJson(rawText: string): any {
 function createRecipeFromData(data: any, category: 'breakfast' | 'lunch' | 'dinner' | 'snack', userLevel: string): Recipe {
   return {
     id: generateId(),
-    name: data.name || "未知食谱",
-    description: data.description || "",
+    name: sanitizeText(data.name) || "低嘌呤营养餐",
+    description: sanitizeText(data.description) || "AI 为您推荐的低嘌呤菜品，营养均衡、制作简单。",
     category,
-    ingredients: data.ingredients || [],
-    steps: data.steps || [],
-    nutrition: data.nutrition || {
-      calories: 0,
-      protein: 0,
-      fat: 0,
-      carbs: 0,
-      fiber: 0,
-      sodium: 0
-    },
-    purineScore: data.purineScore || 'low',
-    cookingTime: data.cookingTime || 30,
-    servings: data.servings || 1,
-    difficulty: data.difficulty || 'easy',
-    tags: data.tags || [],
-    suitableFor: (data.suitableFor as 'normal' | 'high' | 'veryHigh') || userLevel,
+    ingredients: normalizeIngredients(data.ingredients),
+    steps: normalizeSteps(data.steps),
+    nutrition: normalizeNutrition(data.nutrition),
+    purineScore: normalizePurineLevel(data.purineScore),
+    cookingTime: sanitizeNumber(data.cookingTime, 30),
+    servings: sanitizeNumber(data.servings, 1),
+    difficulty: normalizeDifficulty(data.difficulty),
+    tags: Array.isArray(data.tags) ? data.tags.filter(Boolean) : [],
+    suitableFor: normalizeSuitableFor(data.suitableFor, userLevel),
     createdAt: new Date().toISOString()
   };
+}
+
+function sanitizeText(value: unknown): string {
+  if (typeof value === "string") {
+    return value.trim();
+  }
+  return "";
+}
+
+function sanitizeNumber(value: unknown, fallback: number): number {
+  if (typeof value === "number" && !Number.isNaN(value)) {
+    return value;
+  }
+  if (typeof value === "string") {
+    const numeric = parseFloat(value.replace(/[^0-9.\-]/g, ""));
+    if (!Number.isNaN(numeric)) {
+      return numeric;
+    }
+  }
+  return fallback;
+}
+
+function normalizeNutrition(value: any): NutritionInfo {
+  const source = value && typeof value === "object" ? value : {};
+  return {
+    calories: sanitizeNumber(source.calories, 0),
+    protein: sanitizeNumber(source.protein, 0),
+    fat: sanitizeNumber(source.fat, 0),
+    carbs: sanitizeNumber(source.carbs, 0),
+    fiber: sanitizeNumber(source.fiber, 0),
+    sodium: sanitizeNumber(source.sodium, 0)
+  };
+}
+
+function normalizePurineLevel(value: unknown): 'low' | 'mid' | 'high' {
+  if (typeof value === "string") {
+    const normalized = value.toLowerCase();
+    if (normalized.includes("high") || normalized.includes("高")) {
+      return 'high';
+    }
+    if (normalized.includes("mid") || normalized.includes("中")) {
+      return 'mid';
+    }
+    if (normalized.includes("low") || normalized.includes("低")) {
+      return 'low';
+    }
+  }
+  return 'low';
+}
+
+function normalizeDifficulty(value: unknown): 'easy' | 'medium' | 'hard' {
+  if (typeof value === "string") {
+    const normalized = value.toLowerCase();
+    if (normalized.includes("hard") || normalized.includes("困难")) {
+      return 'hard';
+    }
+    if (normalized.includes("medium") || normalized.includes("中")) {
+      return 'medium';
+    }
+    if (normalized.includes("easy") || normalized.includes("简")) {
+      return 'easy';
+    }
+  }
+  return 'easy';
+}
+
+function normalizeSuitableFor(value: unknown, fallback: string): 'normal' | 'high' | 'veryHigh' {
+  if (typeof value === "string") {
+    const normalized = value.toLowerCase();
+    if (normalized.includes("very") || normalized.includes("严重") || normalized.includes("过高")) {
+      return 'veryHigh';
+    }
+    if (normalized.includes("high") || normalized.includes("偏高")) {
+      return 'high';
+    }
+    if (normalized.includes("normal") || normalized.includes("正常")) {
+      return 'normal';
+    }
+  }
+  return (['normal', 'high', 'veryHigh'] as const).includes(fallback as any)
+    ? (fallback as 'normal' | 'high' | 'veryHigh')
+    : 'normal';
+}
+
+function normalizeIngredients(value: unknown): Ingredient[] {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  return value
+    .map((item, index) => {
+      if (!item || typeof item !== "object") {
+        return null;
+      }
+
+      const name = sanitizeText(item.name ?? item.ingredient ?? item.item);
+      const amount = sanitizeText(item.amount ?? item.quantity ?? item.portion ?? item.dosage);
+      const purineLevel = normalizePurineLevel(item.purineLevel ?? item.purine ?? item.level);
+
+      return {
+        name: name || `食材${index + 1}`,
+        amount: amount || '适量',
+        purineLevel
+      };
+    })
+    .filter((item): item is Ingredient => Boolean(item));
+}
+
+function normalizeSteps(value: unknown): string[] {
+  if (!Array.isArray(value)) {
+    if (typeof value === "string" && value.trim()) {
+      return value
+        .split(/[\n；;。]+/)
+        .map(step => step.trim())
+        .filter(Boolean);
+    }
+    return [];
+  }
+
+  return value
+    .map(step => sanitizeText(step))
+    .filter(Boolean);
 }
 
 function generateId(): string {
