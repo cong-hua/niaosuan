@@ -250,7 +250,7 @@ function DesktopHeader({ user, onLogout, onHomeClick, onSearchClick, onUricAcidR
           <span className="text-lg font-bold">UA</span>
         </div>
         <div>
-          <h1 className="text-xl font-semibold tracking-tight">AI 痛风饮食助手</h1>
+          <h1 className="text-xl font-semibold tracking-tight">AI UricCare</h1>
           <p className="text-xs text-gray-500">即刻识别，掌握嘌呤风险</p>
         </div>
       </div>

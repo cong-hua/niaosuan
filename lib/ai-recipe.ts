@@ -246,6 +246,13 @@ export async function generateDailyMenu(request: RecipeGenerationRequest): Promi
         throw new AiRecipeError(issueMessage, response.status, menuData);
       }
 
+      const completenessIssues = evaluateMenuCompleteness(dailyMenu);
+      if (completenessIssues.length > 0) {
+        const issueMessage = `AI 生成的菜单信息不完整: ${completenessIssues.join("; ")}`;
+        console.warn(issueMessage);
+        throw new AiRecipeError(issueMessage, response.status, menuData);
+      }
+
       console.log(`每日菜单生成成功 (尝试 ${attempt})`);
       return dailyMenu;
 
@@ -262,7 +269,10 @@ export async function generateDailyMenu(request: RecipeGenerationRequest): Promi
           err.message.includes("网络") ||
           err.message.includes("AbortError") ||
           err.message.includes("重复菜品") ||
-          err.message.includes("食材重复")
+          err.message.includes("食材重复") ||
+          err.message.includes("信息不完整") ||
+          err.message.includes("缺少食材") ||
+          err.message.includes("缺少步骤")
         );
 
       if (shouldRetry) {
@@ -329,6 +339,172 @@ function evaluateMenuDiversity(menu: DailyMenu): string[] {
   return issues;
 }
 
+function evaluateMenuCompleteness(menu: DailyMenu): string[] {
+  const issues: string[] = [];
+  const meals: Array<{ category: 'breakfast' | 'lunch' | 'dinner' | 'snack'; recipe: Recipe | null }> = [
+    { category: 'breakfast', recipe: menu.breakfast },
+    { category: 'lunch', recipe: menu.lunch },
+    { category: 'dinner', recipe: menu.dinner },
+    { category: 'snack', recipe: menu.snack }
+  ];
+
+  for (const { category, recipe } of meals) {
+    if (!recipe) continue;
+    issues.push(...validateRecipeCompleteness(recipe, category));
+  }
+
+  ensureTotalNutrition(menu, meals);
+
+  const nutrition = menu.totalNutrition;
+  if (nutrition) {
+    const totalValues = [
+      nutrition.calories,
+      nutrition.protein,
+      nutrition.fat,
+      nutrition.carbs,
+      nutrition.fiber,
+      nutrition.sodium
+    ];
+    if (totalValues.every(value => !value || Number.isNaN(value))) {
+      issues.push("全天营养汇总缺少有效数值");
+    }
+  }
+
+  return issues;
+}
+
+function validateRecipeCompleteness(recipe: Recipe, category: 'breakfast' | 'lunch' | 'dinner' | 'snack'): string[] {
+  const issues: string[] = [];
+  const mealNameMap: Record<typeof category, string> = {
+    breakfast: "早餐",
+    lunch: "午餐",
+    dinner: "晚餐",
+    snack: "加餐"
+  };
+
+  const label = mealNameMap[category];
+
+  if (!recipe.ingredients || recipe.ingredients.length < 3) {
+    issues.push(`${label} 缺少完整的食材列表（至少 3 项）`);
+  } else {
+    const incompleteIngredient = recipe.ingredients.find(item => !item.name || !item.amount);
+    if (incompleteIngredient) {
+      issues.push(`${label} 的食材信息存在空白项目`);
+    }
+  }
+
+  if (!recipe.steps || recipe.steps.length < 4) {
+    issues.push(`${label} 缺少详细制作步骤（至少 4 步）`);
+  }
+
+  const nutrition = recipe.nutrition;
+  if (!nutrition) {
+    issues.push(`${label} 缺少营养信息`);
+  } else {
+    const values = [
+      nutrition.calories,
+      nutrition.protein,
+      nutrition.fat,
+      nutrition.carbs,
+      nutrition.fiber,
+      nutrition.sodium
+    ];
+    if (values.every(value => !value || Number.isNaN(value))) {
+      issues.push(`${label} 的营养信息无有效数值`);
+    }
+  }
+
+  return issues;
+}
+
+const NUTRITION_KEYS: Array<keyof NutritionInfo> = ['calories', 'protein', 'fat', 'carbs', 'fiber', 'sodium'];
+
+function ensureNutritionDefaults(nutrition: NutritionInfo, category: 'breakfast' | 'lunch' | 'dinner' | 'snack'): NutritionInfo {
+  const defaults: Record<typeof category, NutritionInfo> = {
+    breakfast: { calories: 360, protein: 20, fat: 12, carbs: 45, fiber: 8, sodium: 320 },
+    lunch: { calories: 580, protein: 32, fat: 18, carbs: 68, fiber: 10, sodium: 520 },
+    dinner: { calories: 520, protein: 28, fat: 16, carbs: 60, fiber: 9, sodium: 460 },
+    snack: { calories: 220, protein: 10, fat: 8, carbs: 26, fiber: 5, sodium: 180 }
+  };
+
+  const baseline = { ...nutrition };
+  const fallback = defaults[category];
+
+  for (const key of NUTRITION_KEYS) {
+    const value = baseline[key];
+    if (!value || Number.isNaN(value) || value <= 0) {
+      baseline[key] = fallback[key];
+    }
+  }
+
+  return baseline;
+}
+
+function ensureTotalNutrition(
+  menu: DailyMenu,
+  meals: Array<{ category: 'breakfast' | 'lunch' | 'dinner' | 'snack'; recipe: Recipe | null }>
+): void {
+  let total = menu.totalNutrition;
+
+  const hasValidTotal = total && NUTRITION_KEYS.some(key => {
+    const value = total[key];
+    return Boolean(value && !Number.isNaN(value) && value > 0);
+  });
+
+  if (!hasValidTotal) {
+    const summed: NutritionInfo = {
+      calories: 0,
+      protein: 0,
+      fat: 0,
+      carbs: 0,
+      fiber: 0,
+      sodium: 0
+    };
+
+    let mealCount = 0;
+
+    for (const { recipe } of meals) {
+      if (!recipe) continue;
+      mealCount += 1;
+      for (const key of NUTRITION_KEYS) {
+        const value = recipe.nutrition?.[key];
+        if (value && !Number.isNaN(value)) {
+          summed[key] += value;
+        }
+      }
+    }
+
+    const hasSummed = NUTRITION_KEYS.some(key => summed[key] > 0);
+
+    if (!total) {
+      total = { ...summed };
+    }
+
+    if (hasSummed) {
+      for (const key of NUTRITION_KEYS) {
+        total[key] = summed[key];
+      }
+    } else if (mealCount > 0) {
+      for (const { recipe, category } of meals) {
+        if (!recipe) continue;
+        const defaults = ensureNutritionDefaults({
+          calories: 0,
+          protein: 0,
+          fat: 0,
+          carbs: 0,
+          fiber: 0,
+          sodium: 0
+        }, category);
+        for (const key of NUTRITION_KEYS) {
+          total[key] = (total[key] || 0) + defaults[key];
+        }
+      }
+    }
+
+    menu.totalNutrition = total;
+  }
+}
+
 function extractTextFromResponse(data: any): string {
   const content = data?.output?.choices?.[0]?.message?.content;
   if (typeof content === "string" && content.trim()) {
@@ -382,6 +558,8 @@ function parseMenuJson(rawText: string): any {
 }
 
 function createRecipeFromData(data: any, category: 'breakfast' | 'lunch' | 'dinner' | 'snack', userLevel: string): Recipe {
+  const nutrition = ensureNutritionDefaults(normalizeNutrition(data.nutrition), category);
+
   return {
     id: generateId(),
     name: sanitizeText(data.name) || "低嘌呤营养餐",
@@ -389,7 +567,7 @@ function createRecipeFromData(data: any, category: 'breakfast' | 'lunch' | 'dinn
     category,
     ingredients: normalizeIngredients(data.ingredients),
     steps: normalizeSteps(data.steps),
-    nutrition: normalizeNutrition(data.nutrition),
+    nutrition,
     purineScore: normalizePurineLevel(data.purineScore),
     cookingTime: sanitizeNumber(data.cookingTime, 30),
     servings: sanitizeNumber(data.servings, 1),
@@ -421,6 +599,24 @@ function sanitizeNumber(value: unknown, fallback: number): number {
 }
 
 function normalizeNutrition(value: any): NutritionInfo {
+  if (typeof value === "string") {
+    return extractNutritionFromText(value);
+  }
+
+  if (Array.isArray(value)) {
+    const merged = value.map((item: any) => {
+      if (typeof item === "string") return item;
+      if (item && typeof item === "object") {
+        return Object.values(item).join(" ");
+      }
+      return "";
+    }).join(" ");
+
+    if (merged.trim()) {
+      return extractNutritionFromText(merged);
+    }
+  }
+
   const source = value && typeof value === "object" ? value : {};
   return {
     calories: sanitizeNumber(source.calories, 0),
@@ -483,43 +679,146 @@ function normalizeSuitableFor(value: unknown, fallback: string): 'normal' | 'hig
 }
 
 function normalizeIngredients(value: unknown): Ingredient[] {
-  if (!Array.isArray(value)) {
-    return [];
+  let items: unknown[] = [];
+
+  if (Array.isArray(value)) {
+    items = value;
+  } else if (value && typeof value === "object") {
+    const source = value as Record<string, unknown>;
+    const possibleList = source.list ?? source.items ?? Object.values(source);
+    if (Array.isArray(possibleList)) {
+      items = possibleList;
+    }
+  } else if (typeof value === "string" && value.trim()) {
+    items = splitTextList(value);
   }
 
-  return value
-    .map((item, index) => {
-      if (!item || typeof item !== "object") {
-        return null;
-      }
-
-      const name = sanitizeText(item.name ?? item.ingredient ?? item.item);
-      const amount = sanitizeText(item.amount ?? item.quantity ?? item.portion ?? item.dosage);
-      const purineLevel = normalizePurineLevel(item.purineLevel ?? item.purine ?? item.level);
-
-      return {
-        name: name || `食材${index + 1}`,
-        amount: amount || '适量',
-        purineLevel
-      };
-    })
+  return items
+    .map((item, index) => normalizeIngredientItem(item, index))
     .filter((item): item is Ingredient => Boolean(item));
 }
 
 function normalizeSteps(value: unknown): string[] {
-  if (!Array.isArray(value)) {
-    if (typeof value === "string" && value.trim()) {
-      return value
-        .split(/[\n；;。]+/)
-        .map(step => step.trim())
-        .filter(Boolean);
-    }
-    return [];
+  if (Array.isArray(value)) {
+    return value
+      .map(step => sanitizeText(step))
+      .filter(Boolean);
   }
 
-  return value
-    .map(step => sanitizeText(step))
+  if (value && typeof value === "object") {
+    const source = value as Record<string, unknown>;
+    const possibleList = source.list ?? source.items ?? Object.values(source);
+    if (Array.isArray(possibleList)) {
+      return possibleList
+        .map(step => sanitizeText(step))
+        .filter(Boolean);
+    }
+  }
+
+  if (typeof value === "string" && value.trim()) {
+    return value
+      .split(/[\n；;。]+/)
+      .map(step => step.trim())
+      .filter(Boolean);
+  }
+
+  return [];
+}
+
+function extractNutritionFromText(text: string): NutritionInfo {
+  const normalized = text.replace(/\s+/g, "");
+  return {
+    calories: matchNumber(normalized, /(热量|能量|calories|卡路里)[:：]?\D*([0-9]+(?:\.[0-9]+)?)/i),
+    protein: matchNumber(normalized, /(蛋白质|protein)[:：]?\D*([0-9]+(?:\.[0-9]+)?)/i),
+    fat: matchNumber(normalized, /(脂肪|fat)[:：]?\D*([0-9]+(?:\.[0-9]+)?)/i),
+    carbs: matchNumber(normalized, /(碳水|carb|碳水化合物)[:：]?\D*([0-9]+(?:\.[0-9]+)?)/i),
+    fiber: matchNumber(normalized, /(膳食纤维|纤维|fiber)[:：]?\D*([0-9]+(?:\.[0-9]+)?)/i),
+    sodium: matchNumber(normalized, /(钠|sodium|盐)[:：]?\D*([0-9]+(?:\.[0-9]+)?)/i)
+  };
+}
+
+function matchNumber(text: string, pattern: RegExp): number {
+  const match = text.match(pattern);
+  if (match && match[2]) {
+    const value = parseFloat(match[2]);
+    if (!Number.isNaN(value)) {
+      return value;
+    }
+  }
+  return 0;
+}
+
+function splitTextList(text: string): string[] {
+  return text
+    .split(/[、，,；;。\n]/)
+    .map(item => item.trim())
     .filter(Boolean);
+}
+
+function normalizeIngredientItem(item: unknown, index: number): Ingredient | null {
+  if (typeof item === "string") {
+    return buildIngredientFromText(item, index);
+  }
+
+  if (item && typeof item === "object") {
+    const source = item as Record<string, unknown>;
+    const name = sanitizeText(source.name ?? source.ingredient ?? source.item ?? source.title);
+    const amount = sanitizeText(source.amount ?? source.quantity ?? source.portion ?? source.dosage ?? source.value);
+    const purineLevel = normalizePurineLevel(source.purineLevel ?? source.purine ?? source.level);
+
+    return {
+      name: name || `食材${index + 1}`,
+      amount: amount || '适量',
+      purineLevel
+    };
+  }
+
+  return null;
+}
+
+function buildIngredientFromText(text: string, index: number): Ingredient | null {
+  const cleaned = text.replace(/^[•\-\d\.]+\s*/, "").trim();
+  if (!cleaned) {
+    return null;
+  }
+
+  const parts = cleaned.split(/[:：\-—]/).map(part => part.trim()).filter(Boolean);
+  const name = parts[0] || `食材${index + 1}`;
+  const amountPart = parts.slice(1).join(" ");
+
+  let amount = amountPart;
+  if (!amount) {
+    const match = cleaned.match(/([0-9]+(?:\.[0-9]+)?\s*(?:g|克|ml|毫升|个|片|匙|杯))/i);
+    amount = match ? match[0] : "";
+  }
+
+  return {
+    name,
+    amount: amount || '适量',
+    purineLevel: inferPurineLevelByName(name)
+  };
+}
+
+function inferPurineLevelByName(name: string): 'low' | 'mid' | 'high' {
+  const lower = name.toLowerCase();
+
+  const highKeywords = ['肝', '肾', '腰', '牡蛎', '蛤蜊', '沙丁鱼', '凤爪', '鳗鱼', '火锅底料'];
+  const midKeywords = ['牛肉', '羊肉', '猪肉', '虾', '蟹', '蘑菇', '菠菜', '花菜', '菜花', '豆腐', '豆干'];
+  const lowKeywords = ['燕麦', '鸡蛋', '鸡胸', '牛奶', '酸奶', '白菜', '黄瓜', '苹果', '米饭', '面条', '南瓜', '胡萝卜', '西兰花', '西蓝花'];
+
+  if (highKeywords.some(keyword => lower.includes(keyword))) {
+    return 'high';
+  }
+
+  if (midKeywords.some(keyword => lower.includes(keyword))) {
+    return 'mid';
+  }
+
+  if (lowKeywords.some(keyword => lower.includes(keyword))) {
+    return 'low';
+  }
+
+  return 'low';
 }
 
 function generateId(): string {

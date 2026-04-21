@@ -180,6 +180,9 @@ export function generateDailyMenuPrompt(request: RecipeGenerationRequest): strin
 7. 每餐菜品需完全不同，主食、主要食材和烹饪方式不得重复或仅作轻微修改
 8. 合理搭配蔬菜、优质蛋白和主食，保证整体口味与营养多样化
 9. 若包含加餐，加餐需与正餐明显区分，可选择低嘌呤的水果、饮品或坚果
+10. 每道菜的 ingredients 字段必须是包含3-6个对象的数组，每个对象提供 name、amount、purineLevel 字段
+11. steps 字段必须是包含至少4个步骤的数组，每个步骤为简洁的字符串说明
+12. nutrition 字段需提供 calories、protein、fat、carbs、fiber、sodium 的具体数值，不得全部为 0 或留空
 
 ${request.preferences ? `饮食偏好：${request.preferences.join('、')}` : ''}
 ${request.allergies ? `避免食材：${request.allergies.join('、')}` : ''}

@@ -144,6 +144,18 @@ function mapRowToRisk(row: {
   };
 }
 
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function normalizeEmail(email: string): string {
+  return email.trim().toLowerCase();
+}
+
+function cleanOptional(value?: string | null): string | undefined {
+  if (!value) return undefined;
+  const trimmed = value.trim();
+  return trimmed.length > 0 ? trimmed : undefined;
+}
+
 export async function createUser(userData: CreateUserRequest): Promise<User> {
   assertEnv();
 
@@ -153,16 +165,26 @@ export async function createUser(userData: CreateUserRequest): Promise<User> {
     }
   });
 
+  const normalizedEmail = normalizeEmail(userData.email);
+  if (!emailRegex.test(normalizedEmail)) {
+    throw new Error("邮箱格式不正确");
+  }
+
+  const normalizedPassword = userData.password.trim();
+  if (normalizedPassword.length < 6) {
+    throw new Error("密码长度至少6位");
+  }
+
   const { hashPassword } = await import('@/lib/password');
-  const passwordHash = await hashPassword(userData.password);
+  const passwordHash = await hashPassword(normalizedPassword);
 
   const { data, error } = await client
     .from('users')
     .insert({
-      email: userData.email,
+      email: normalizedEmail,
       password_hash: passwordHash,
-      username: userData.username,
-      phone: userData.phone
+      username: cleanOptional(userData.username),
+      phone: cleanOptional(userData.phone)
     })
     .select()
     .single();
@@ -193,10 +215,13 @@ export async function loginUser(loginData: LoginRequest): Promise<User> {
     }
   });
 
+  const normalizedEmail = normalizeEmail(loginData.email);
+  const normalizedPassword = loginData.password.trim();
+
   const { data: user, error } = await client
     .from('users')
     .select('id, email, password_hash, username, phone')
-    .eq('email', loginData.email)
+    .eq('email', normalizedEmail)
     .single();
 
   if (error || !user) {
@@ -204,7 +229,7 @@ export async function loginUser(loginData: LoginRequest): Promise<User> {
   }
 
   const { comparePassword } = await import('@/lib/password');
-  const isPasswordValid = await comparePassword(loginData.password, user.password_hash);
+  const isPasswordValid = await comparePassword(normalizedPassword, user.password_hash);
 
   if (!isPasswordValid) {
     throw new Error('邮箱或密码错误');

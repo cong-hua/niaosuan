@@ -33,12 +33,26 @@ export default function LoginModal({ onClose, onAuthSuccess }: LoginModalProps) 
 
     try {
       const endpoint = mode === 'register' ? '/api/auth/register' : '/api/auth/login';
+      const payload: Record<string, string> = {
+        email: formData.email.trim().toLowerCase(),
+        password: formData.password.trim()
+      };
+
+      if (mode === 'register') {
+        if (formData.username.trim()) {
+          payload.username = formData.username.trim();
+        }
+        if (formData.phone.trim()) {
+          payload.phone = formData.phone.trim();
+        }
+      }
+
       const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
       });
 
       const data = await response.json();

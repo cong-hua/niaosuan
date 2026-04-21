@@ -24,6 +24,30 @@ interface TrendAnalysisProps {
 
 type ViewMode = 'recipes' | 'menu';
 
+const DEFAULT_PREFERENCE_TEXT = '偏好清淡、低盐少油的饮食，喜欢蒸煮炖，避免油炸和辛辣食物，忌海鲜和动物内脏，多加入高纤维蔬菜、全谷物和豆制品。';
+
+const PREFERENCE_PRESETS = [
+  {
+    label: '清淡低盐',
+    text: '偏好清淡少油的中式家常菜，烹饪方式以蒸、煮、炖为主，调味控制盐和糖，用橄榄油或菜籽油。'
+  },
+  {
+    label: '高纤维营养',
+    text: '每日需要搭配全谷物和杂粮，午晚餐增加深色叶菜和菌菇，优先选择豆制品和禽类作为蛋白质来源。'
+  },
+  {
+    label: '控制嘌呤',
+    text: '严格限制海鲜、动物内脏和高嘌呤红肉，适量食用去皮禽肉和低脂乳制品，避免浓肉汤和啤酒。'
+  }
+];
+
+function extractPreferences(text: string): string[] {
+  return text
+    .split(/[，,；;。\n]/)
+    .map(item => item.trim())
+    .filter(Boolean);
+}
+
 export default function RecipeRecommendation({ user }: TrendAnalysisProps) {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [dailyMenu, setDailyMenu] = useState<DailyMenu | null>(null);
@@ -32,6 +56,7 @@ export default function RecipeRecommendation({ user }: TrendAnalysisProps) {
   const [viewMode, setViewMode] = useState<ViewMode>('recipes');
   const [records, setRecords] = useState<UricAcidRecord[]>([]);
   const [generatingCategory, setGeneratingCategory] = useState<string | null>(null);
+  const [preferenceText, setPreferenceText] = useState<string>(DEFAULT_PREFERENCE_TEXT);
 
   // 获取用户尿酸记录
   useEffect(() => {
@@ -86,7 +111,8 @@ export default function RecipeRecommendation({ user }: TrendAnalysisProps) {
         userLevel: getUserUricAcidLevel(),
         gender: 'male', // 默认男性，实际应该从用户信息获取
         category: category,
-        calorieTarget: category === 'breakfast' ? 400 : category === 'lunch' ? 600 : category === 'dinner' ? 500 : 200
+        calorieTarget: category === 'breakfast' ? 400 : category === 'lunch' ? 600 : category === 'dinner' ? 500 : 200,
+        preferences: extractPreferences(preferenceText)
       };
 
       const response = await fetch('/api/recipe/generate', {
@@ -131,7 +157,8 @@ export default function RecipeRecommendation({ user }: TrendAnalysisProps) {
       const requestBody = {
         userLevel: getUserUricAcidLevel(),
         gender: 'male', // 默认男性
-        calorieTarget: 1800 // 一天目标热量
+        calorieTarget: 1800, // 一天目标热量
+        preferences: extractPreferences(preferenceText)
       };
 
       const response = await fetch('/api/recipe/menu', {
@@ -205,6 +232,32 @@ export default function RecipeRecommendation({ user }: TrendAnalysisProps) {
             {error}
           </div>
         )}
+
+        <div className="mb-6">
+          <div className="flex items-center justify-between mb-2">
+            <label className="text-sm font-medium text-gray-700">饮食偏好（AI 将参考此描述生成菜谱）</label>
+            <span className="text-xs text-gray-400">可手动修改或点击示例快速填写</span>
+          </div>
+          <textarea
+            className="w-full rounded-md border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-sm p-3 transition-colors"
+            rows={3}
+            value={preferenceText}
+            onChange={(event) => setPreferenceText(event.target.value)}
+            placeholder="例如：偏好清淡饮食，限制油盐，喜欢蒸煮炖，避免海鲜和高嘌呤红肉，晚餐减少碳水。"
+          />
+          <div className="flex flex-wrap gap-2 mt-2">
+            {PREFERENCE_PRESETS.map((preset) => (
+              <button
+                key={preset.label}
+                type="button"
+                onClick={() => setPreferenceText(preset.text)}
+                className="px-3 py-1 text-xs bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 transition-colors"
+              >
+                {preset.label}
+              </button>
+            ))}
+          </div>
+        </div>
 
         {viewMode === 'recipes' ? (
           <div>

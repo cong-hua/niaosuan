@@ -112,34 +112,42 @@ export default function DailyMenuView({ menu }: DailyMenuViewProps) {
           {/* 食材清单 */}
           <div className="mb-3">
             <h5 className="font-semibold text-gray-800 mb-2">食材清单</h5>
-            <div className="space-y-1">
-              {recipe.ingredients.map((ingredient, index) => (
-                <div key={index} className="flex items-center justify-between text-sm">
-                  <span className="text-gray-700">{ingredient.name}</span>
-                  <div className="flex items-center gap-2">
-                    <span className="text-gray-600">{ingredient.amount}</span>
-                    <span className={`text-xs px-1 py-0.5 rounded ${getPurineScoreColor(ingredient.purineLevel)}`}>
-                      {getPurineScoreText(ingredient.purineLevel)}
-                    </span>
+            {recipe.ingredients.length === 0 ? (
+              <p className="text-sm text-gray-500">AI 暂未提供该餐的食材详情，建议手动确认所用食材。</p>
+            ) : (
+              <div className="space-y-1">
+                {recipe.ingredients.map((ingredient, index) => (
+                  <div key={index} className="flex items-center justify-between text-sm">
+                    <span className="text-gray-700">{ingredient.name}</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-gray-600">{ingredient.amount}</span>
+                      <span className={`text-xs px-1 py-0.5 rounded ${getPurineScoreColor(ingredient.purineLevel)}`}>
+                        {getPurineScoreText(ingredient.purineLevel)}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* 制作步骤 */}
           <div>
             <h5 className="font-semibold text-gray-800 mb-2">制作步骤</h5>
-            <div className="space-y-2">
-              {recipe.steps.map((step, index) => (
-                <div key={index} className="flex gap-3 text-sm">
-                  <span className="flex-shrink-0 w-5 h-5 bg-blue-100 text-blue-800 rounded-full flex items-center justify-center text-xs font-medium">
-                    {index + 1}
-                  </span>
-                  <span className="text-gray-700">{step}</span>
-                </div>
-              ))}
-            </div>
+            {recipe.steps.length === 0 ? (
+              <p className="text-sm text-gray-500">AI 暂未提供制作步骤，建议按照常规烹饪方式处理或重新生成菜单。</p>
+            ) : (
+              <div className="space-y-2">
+                {recipe.steps.map((step, index) => (
+                  <div key={index} className="flex gap-3 text-sm">
+                    <span className="flex-shrink-0 w-5 h-5 bg-blue-100 text-blue-800 rounded-full flex items-center justify-center text-xs font-medium">
+                      {index + 1}
+                    </span>
+                    <span className="text-gray-700">{step}</span>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       )}

@@ -9,14 +9,17 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { email, password, username, phone } = body;
 
-    if (!email || !password) {
+    const normalizedEmail = typeof email === "string" ? email.trim().toLowerCase() : "";
+    const normalizedPassword = typeof password === "string" ? password.trim() : "";
+
+    if (!normalizedEmail || !normalizedPassword) {
       return NextResponse.json(
         { message: "邮箱和密码不能为空" },
         { status: 400 }
       );
     }
 
-    if (password.length < 6) {
+    if (normalizedPassword.length < 6) {
       return NextResponse.json(
         { message: "密码长度至少6位" },
         { status: 400 }
@@ -24,7 +27,7 @@ export async function POST(request: Request) {
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
+    if (!emailRegex.test(normalizedEmail)) {
       return NextResponse.json(
         { message: "邮箱格式不正确" },
         { status: 400 }
@@ -32,8 +35,8 @@ export async function POST(request: Request) {
     }
 
     const userData: CreateUserRequest = {
-      email,
-      password,
+      email: normalizedEmail,
+      password: normalizedPassword,
       username,
       phone
     };

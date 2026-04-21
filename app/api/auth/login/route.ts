@@ -9,7 +9,10 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { email, password } = body;
 
-    if (!email || !password) {
+    const normalizedEmail = typeof email === "string" ? email.trim().toLowerCase() : "";
+    const normalizedPassword = typeof password === "string" ? password.trim() : "";
+
+    if (!normalizedEmail || !normalizedPassword) {
       return NextResponse.json(
         { message: "邮箱和密码不能为空" },
         { status: 400 }
@@ -17,8 +20,8 @@ export async function POST(request: Request) {
     }
 
     const loginData: LoginRequest = {
-      email,
-      password
+      email: normalizedEmail,
+      password: normalizedPassword
     };
 
     const user = await loginUser(loginData);
